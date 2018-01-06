@@ -1,3 +1,6 @@
+/* 2018 leresidue */
+
+
 #include "stdafx.h"
 
 
