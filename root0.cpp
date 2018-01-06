@@ -1,3 +1,5 @@
+/* 2018 leresidue */
+
 #include "stdafx.h"
 
 #include "whole.h"
@@ -121,7 +123,7 @@ int APIENTRY wWinMain(HINSTANCE pI, HINSTANCE pPI, LPWSTR pCL, int pCS) {
 
 	
 	ROOTwindow	*mwi = Cwindow::createwindowex<ROOTwindow>(
-	0, L"ALLÔ", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr,
+	0, L"ALLÃ”", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr,
 		LoadMenu(pI, MAKEINTRESOURCEW(????))
 	);
 
