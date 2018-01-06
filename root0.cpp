@@ -17,10 +17,10 @@ void Cwindow::registerclassex() {
 		wcex.cbClsExtra     = 0;
 		wcex.cbWndExtra     = 0;
 		wcex.hInstance      = gI;
-		wcex.hIcon          = LoadIcon(gI, MAKEINTRESOURCE(IDI_EXPOSCAN1));
+		wcex.hIcon          = LoadIcon(gI, MAKEINTRESOURCE(???));
 		wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
 		wcex.hbrBackground  = 0;//(HBRUSH)(COLOR_WINDOW+1);
-		wcex.lpszMenuName   = NULL;//MAKEINTRESOURCEW(IDC_EXPOSCAN1);
+		wcex.lpszMenuName   = NULL;//MAKEINTRESOURCEW(???);
 		wcex.lpszClassName  = CnA;
 		wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
@@ -98,7 +98,7 @@ int APIENTRY wWinMain(HINSTANCE pI, HINSTANCE pPI, LPWSTR pCL, int pCS) {
 	
 	gI = pI;
 
-	HACCEL	fAT = LoadAccelerators(pI, MAKEINTRESOURCE(IDC_EXPOSCAN1));
+	HACCEL	fAT = LoadAccelerators(pI, MAKEINTRESOURCE(???));
 	MSG		fMs;
 
 	/////////////
@@ -108,10 +108,10 @@ int APIENTRY wWinMain(HINSTANCE pI, HINSTANCE pPI, LPWSTR pCL, int pCS) {
 	HRESULT	hr;
 	
 
-	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,
+	/*hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,
 			__uuidof(ID2D1Factory1),
 			reinterpret_cast<void**>(&gD2D1Fac));
-	if(SUCCEEDED(hr) == 0) return 0;
+	if(SUCCEEDED(hr) == 0) return 0;*/
 
 
 		/////////////
@@ -151,7 +151,7 @@ int APIENTRY wWinMain(HINSTANCE pI, HINSTANCE pPI, LPWSTR pCL, int pCS) {
 
 		/////////////
 
-	if(gD2D1Fac)	gD2D1Fac->Release();
+	//if(gD2D1Fac)	gD2D1Fac->Release();
 	CoUninitialize();
 
 	/////////////
