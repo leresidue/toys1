@@ -28,26 +28,6 @@ void Cwindow::registerclassex() {
 	}
 }
 
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    UNREFERENCED_PARAMETER(lParam);
-    switch (message)
-    {
-    case WM_INITDIALOG:
-        return (INT_PTR)TRUE;
-
-    case WM_COMMAND:
-        if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-        {
-            EndDialog(hDlg, LOWORD(wParam));
-            return (INT_PTR)TRUE;
-        }
-        break;
-    }
-    return (INT_PTR)FALSE;
-}
-
-
 class ROOTwindow : public Cwindow, public VerbCommand {
 private:
 	LRESULT wp(UINT msg, WPARAM wParam, LPARAM lParam) {
@@ -55,9 +35,6 @@ private:
 		case WM_COMMAND: {
 			int wmId = LOWORD(wParam);
 			switch (wmId) {
-			case IDM_ABOUT:
-				DialogBox(gI, MAKEINTRESOURCE(IDD_ABOUTBOX), gw(), About);
-				break;
 			case IDM_EXIT:
 				DestroyWindow(gw());
 				break;
