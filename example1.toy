@@ -1,0 +1,18 @@
+dialog <new_image> img_car, okcancel
+
+<okcancel>
+	destroy <refuse> button "Cancel"
+	close   <accept> button "New"
+</okcancel>
+
+<img_car>
+	uint32_t      <width>   640 min 1
+	uint32_t      <height>  480 mil 1
+	pixel_format  <pxf> 
+</img_car>
+
+new_image [temp]
+	accept [
+		init width heigh pxf
+	/]
+[/temp]
