@@ -10,7 +10,7 @@ Le code de ce projet est un squelette d'application pour un nouveau langage d'in
 
 Je crois que la sécurité vient de la prévisibilité. Donc, si quelque chose est prévisible, on peut alors lui faire confiance. Si on peut faire confiance à des applications basés sur le ToySanta, alors nous nous sentirons en sécurité à les utiliser.
 
-Ce projet est encore à l’étape embryonnaire. Alors, il n’y a pas de prototype fonctionnel présentement.:-(
+Ce projet est encore à l’étape embryonnaire. Mais, il y a un prototype fonctionnel présentement.:-)
 
 
 
@@ -25,4 +25,4 @@ This is the skeleton of a new interactive interface language called ToySanta. Th
 
 I believe that security comes from predictability. So if something is predictable, you can depend on it. If you can depend on it, you'll feel secure using it.
 
-This project is in its infancy, so, there's no functionnal prototype at this time. :-(
+This project is in its infancy, but, there's a functionnal prototype presently. :-)
