@@ -1,6 +1,8 @@
 /* 2018 leresidue
-	Â© 2018 FrÃ©dÃ©rique Brisson-Lambert
+	© 2018 Frédérique Brisson-Lambert
 */
+
+
 
 #pragma once
 
@@ -182,7 +184,7 @@ private:
 				switch(loword) {
 					case SB_LEFT:		sadd += -12; break;
 					case SB_LINELEFT:	sadd += -1; break;
-					case SB_PAGELEFT:	sadd -= info.nPage; break;
+					case SB_PAGELEFT:	sadd += -(int)info.nPage; break;
 
 					case SB_RIGHT:		sadd += 12; break;
 					case SB_LINERIGHT:	sadd += 1; break;
@@ -235,7 +237,7 @@ private:
 				oS->update();
 				ScrollWindow(oX->gw(), pt2.x-pt1.x, pt2.y-pt1.y, NULL, NULL);*/
 			} else {
-				SetWindowPos(oX->gw(), 0, -info1.nPos, -info2.nPos, 0, 0, SWP_NOSIZE);
+				SetWindowPos(oX->gw(), 0, -(int)info1.nPos, -(int)info2.nPos, 0, 0, SWP_NOSIZE);
 			}
 		}
 	}

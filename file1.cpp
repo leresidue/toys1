@@ -1,6 +1,7 @@
 /* 2018 leresidue
-	Â© 2018 FrÃ©dÃ©rique Brisson-Lambert
+	© 2018 Frédérique Brisson-Lambert
 */
+
 
 #include "stdafx.h"
 
@@ -15,7 +16,7 @@ bool Cfile::IFDgetname(IFileDialog *fD) {
 		LPWSTR	pS;
 		hr = sI->GetDisplayName(SIGDN_FILESYSPATH, &pS);
 		if(SUCCEEDED(hr)) {
-			wcsncpy(&mN[0], pS, MAX_PATH);
+			wcsncpy_s(mN, (TCHAR*)pS, MAX_PATH);
 			CoTaskMemFree(pS);
 
 			must_delete = false;

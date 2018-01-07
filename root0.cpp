@@ -1,5 +1,5 @@
 /* 2018 leresidue
-	Â© 2018 FrÃ©dÃ©rique Brisson-Lambert
+	© 2018 Frédérique Brisson-Lambert
 */
 
 
@@ -8,6 +8,7 @@
 #include "resource.h"
 
 HINSTANCE			gI;
+IWICImagingFactory	*gWICFac = nullptr;
 ID2D1Factory		*gD2D1Fac = nullptr;
 
 void Cwindow::registerclassex() {
@@ -20,7 +21,7 @@ void Cwindow::registerclassex() {
 		wcex.cbClsExtra     = 0;
 		wcex.cbWndExtra     = 0;
 		wcex.hInstance      = gI;
-		wcex.hIcon          = LoadIcon(gI, MAKEINTRESOURCE(IDC_TOYS1APP));
+		wcex.hIcon          = LoadIcon(gI, MAKEINTRESOURCE(IDI_TOYS1APP));
 		wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
 		wcex.hbrBackground  = 0;//(HBRUSH)(COLOR_WINDOW+1);
 		wcex.lpszMenuName   = NULL;//MAKEINTRESOURCEW(IDC_EXPOSCAN1);
@@ -30,12 +31,12 @@ void Cwindow::registerclassex() {
 		CwA =  RegisterClassExW(&wcex);
 	}
 }
-
+HACCEL	gfAT = 0;
 int infiniteloop() {
-	HACCEL	fAT = LoadAccelerators(gI, MAKEINTRESOURCE(IDC_TOYS1APP));
+	//HACCEL	fAT = LoadAccelerators(gI, MAKEINTRESOURCE(IDC_TOYS1APP));
 	MSG		fMs;
 	while(GetMessage(&fMs, nullptr, 0, 0)) {
-		if(!TranslateAccelerator(fMs.hwnd, fAT, &fMs)) {
+		if(!TranslateAccelerator(fMs.hwnd, gfAT, &fMs)) {
 			TranslateMessage(&fMs);
 			DispatchMessage(&fMs);
 		}
@@ -46,18 +47,25 @@ int infiniteloop() {
 int APIENTRY wWinMain(HINSTANCE pI, HINSTANCE pPI, LPWSTR pCL, int pCS) {
 	int	reterr;
 	gI = pI;
-
+	gfAT = LoadAccelerators(pI, MAKEINTRESOURCE(IDC_TOYS1APP));
 	/////////////
 
 	if(SUCCEEDED(CoInitialize(NULL)) == 0) return 0;
 	
 	HRESULT	hr;
 	
+	hr = CoCreateInstance(
+		CLSID_WICImagingFactory,
+		NULL,
+		CLSCTX_INPROC_SERVER,
+		IID_PPV_ARGS(&gWICFac));
+	if(SUCCEEDED(hr) == 0) return 0;
 
 	hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,
 			__uuidof(ID2D1Factory1),
 			reinterpret_cast<void**>(&gD2D1Fac));
 	if(SUCCEEDED(hr) == 0) return 0;
+
 
 
 		/////////////
@@ -70,6 +78,7 @@ int APIENTRY wWinMain(HINSTANCE pI, HINSTANCE pPI, LPWSTR pCL, int pCS) {
 
 		/////////////
 
+	if(gWICFac)		gWICFac->Release();
 	if(gD2D1Fac)	gD2D1Fac->Release();
 	CoUninitialize();
 

@@ -1,6 +1,7 @@
 /* 2018 leresidue
-	Â© 2018 FrÃ©dÃ©rique Brisson-Lambert
+	© 2018 Frédérique Brisson-Lambert
 */
+
 
 
 #include "stdafx.h"
