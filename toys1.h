@@ -1,3 +1,8 @@
+/* 2018 leresidue
+	© 2018 Frédérique Brisson-Lambert
+*/
+
+
 #pragma once
 
 
