@@ -1,5 +1,3 @@
-/* 2018 leresidue */
-
 #pragma once
 
 class Cifiledialogevents : 

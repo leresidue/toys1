@@ -1,6 +1,3 @@
-/* 2018 leresidue */
-
-
 #pragma once
 
 

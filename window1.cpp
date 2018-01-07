@@ -1,5 +1,3 @@
-/* 2018 leresidue */
-
 #include "stdafx.h"
 
 extern HINSTANCE	gI;
@@ -7,7 +5,7 @@ extern HINSTANCE	gI;
 
 
 ATOM	Cwindow::CwA = 0;
-wchar_t	*Cwindow::CnA = L"Cwindow";
+const wchar_t	*Cwindow::CnA = L"Cwindow";
 
 LRESULT	Cwindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam) {
 	Cwindow		*pW = nullptr;

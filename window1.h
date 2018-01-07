@@ -1,5 +1,3 @@
-/* 2018 leresidue */
-
 #pragma once
 
 
@@ -12,7 +10,7 @@ private:
 
 	HWND	oW;
 protected:
-	static wchar_t	*CnA;
+	static const wchar_t	*CnA;
 
 	Cwindow();
 
