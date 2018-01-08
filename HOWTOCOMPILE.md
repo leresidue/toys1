@@ -8,6 +8,8 @@
 
 4. In the 'Explorateur de solutions' pane, add all the files copied from the repository that are missing from the pane
 
-5. Press 'Débogueur Windows local', and if you see a gray window whose title is 'ALLÔ', then you know that the project compiled correctly.
+5. Press 'Débogueur Windows local', and if you see a gray window whose title is 'ALLÔ', then you know that the project compiled successfully.
 
 Good luck with your endeavours, and please tell me if the instructions provided (or the source code) are lacking or buggy, and I will try my best to improve the situation. :-)
+
+--leresidue
