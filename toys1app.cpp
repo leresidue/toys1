@@ -39,7 +39,7 @@
 class CUSTOMZO : public ZOfile {
 public:
 	CUSTOMZO(IFileOpenDialog *fd):ZOfile(fd) {
-		UINT	ix = get_filterIndex_from_extension(L"jpg");
+		UINT	ix = get_filterIndex_from_extension(L"gif");
 		if(ix) {
 			fd->SetFileTypeIndex(ix);
 		}
@@ -88,7 +88,7 @@ private:
 			int wmId = LOWORD(wParam);
 			switch (wmId) {
 			case ID_FICHIER_OUVRIRUNEIMAGE: {
-				std::wstring n = L"file1.jpg";
+				std::wstring n = L"file1.gif";
 				ZOfile	*mfi = Cfile::fileopendialog<CUSTOMZO>(&n, gw());
 				if(mfi) {
 					mfi->getbitmap(&source);
