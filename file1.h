@@ -202,9 +202,9 @@ public:
 			rV = new (std::nothrow) T(fD);
 			if(rV) {
 				if(rV->mN[0] == 0) {
-					//if(pN) fD->SetFileName(pN->c_str());
+					if(pN) fD->SetFileName(pN->c_str());
 				} else {
-					//fD->SetFileName(&rV->mN[0]);
+					fD->SetFileName(&rV->mN[0]);
 				}
 
 				hr = fD->Advise(rV, &cookie);

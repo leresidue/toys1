@@ -31,9 +31,14 @@
 
 #include "rwhole1.h"
 
-extern HINSTANCE			gI;
-extern IWICImagingFactory	*gWICFac;
-extern ID2D1Factory			*gD2D1Fac;
+extern HINSTANCE				gI;
+extern IWICImagingFactory		*gWICFac;
+extern ID2D1Factory1			*gD2D1Fac;
+extern IDWriteFactory			*gDWriteFac;
+
+extern ID3D11Device			*d3dev;
+extern ID3D11DeviceContext	*d3dc;
+extern IDXGIDevice			*dxdev;
 
 
 

@@ -33,6 +33,10 @@
 #include "whole1.h"
 
 
+///////
+
+
+
 ////
 
 LRESULT EAwindow::wp(UINT msg, WPARAM wParam, LPARAM lParam) {
