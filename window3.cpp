@@ -1,7 +1,3 @@
-/* 2018 leresidue
-	© 2018 Frédérique Brisson-Lambert
-*/
-
 /***************************************************************************************
 
 	Copyright (c) 2018 Frédérique Brisson-Lambert
@@ -32,6 +28,53 @@
 extern ID2D1Factory1		*gD2D1Fac;
 extern IDWriteFactory		*gDWriteFac;
 
+IDWriteTextFormat *Dtext::gettf(Dtexti i) {
+	IDWriteTextFormat	*ret;
+	ret = dwtf[i];
+	if(ret == nullptr) {
+		ret = dwtf[0];
+	}
+	return ret;
+}
+
+Dtext::Dtexti Dtext::createformat(const wchar_t *fn, float size, bool italic, bool bold) {
+	Dtexti		ret = 0;
+	HRESULT	hr;
+	IDWriteTextFormat	*tl = nullptr;
+	hr = gDWriteFac->CreateTextFormat(fn, nullptr,
+		(bold?DWRITE_FONT_WEIGHT_BOLD:DWRITE_FONT_WEIGHT_MEDIUM),
+		(italic?DWRITE_FONT_STYLE_ITALIC:DWRITE_FONT_STYLE_NORMAL),
+		DWRITE_FONT_STRETCH_NORMAL, size, fn, &tl);
+	if(SUCCEEDED(hr)) {
+		IDWriteTextFormat *ol;
+		ol = dwtf[gmin];
+		if(ol != nullptr) {
+			ol->Release();
+		}
+		dwtf[gmin] = tl;
+		ret = gmin;
+		gmin++;
+	}
+	return ret;
+}
+
+Dtext::Dtext() {
+	HRESULT	hr;
+	IDWriteTextFormat	*tl = nullptr;
+	hr = gDWriteFac->CreateTextFormat(L"Arial", nullptr,
+		DWRITE_FONT_WEIGHT_MEDIUM, DWRITE_FONT_STYLE_NORMAL,
+		DWRITE_FONT_STRETCH_NORMAL, 16.0f, L"Arial", &tl);
+	if(SUCCEEDED(hr)) {
+		dwtf[0] = tl;
+	}
+}
+
+Dtext::~Dtext() {
+	for(auto i = std::begin(dwtf); i != std::end(dwtf); i++) {
+		if(i->second) i->second->Release();
+	}
+
+}
 
 LRESULT Dwindow::wp(UINT msg, WPARAM wParam, LPARAM lParam) {
 	HRESULT	hr;
@@ -57,7 +100,7 @@ LRESULT Dwindow::wp(UINT msg, WPARAM wParam, LPARAM lParam) {
 				D2D1::Matrix3x2F::Identity() *
 				D2D1::Matrix3x2F::Translation(-ps.rcPaint.left+osx, -ps.rcPaint.top+osy)
 			);
-			this->paint();
+			this->paint(dim);
 
 			hr = rT->EndDraw();
 			if(FAILED(hr) || hr == D2DERR_RECREATE_TARGET) {
@@ -75,6 +118,9 @@ LRESULT Dwindow::wp(UINT msg, WPARAM wParam, LPARAM lParam) {
 
 void Dcontext::paint() {
 
+}
+void Dcontext::paint(D2D1_SIZE_F dim) {
+	this->paint();
 }
 
 void Dwindow::destroy_rT() {

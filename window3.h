@@ -1,7 +1,3 @@
-/* 2018 leresidue
-	© 2018 Frédérique Brisson-Lambert
-*/
-
 /***************************************************************************************
 
 	Copyright (c) 2018 Frédérique Brisson-Lambert
@@ -29,14 +25,32 @@
 
 #pragma once
 
+class Dtext {
+public:
+	typedef uint64_t Dtexti;
+protected:
+	uint64_t	gmin = 1;
+	std::unordered_map< Dtexti, IDWriteTextFormat*>	dwtf;
+public:
+	
+	
 
+	IDWriteTextFormat *gettf(Dtexti i);
+	Dtexti createformat(const wchar_t *fn, float size, bool italic, bool bold);
+
+	Dtext();
+	~Dtext();
+};
 
 class Dcontext {
 protected:
 	ID2D1RenderTarget	*rT = nullptr;
+	
 	std::unordered_map< uint64_t, ID2D1SolidColorBrush*>	bli;
 	ID2D1SolidColorBrush *getbrush(short r, short g, short b, short a = 255);
+
 	virtual void paint();
+	virtual void paint(D2D1_SIZE_F dim);
 public:
 	Dcontext();
 	Dcontext(ID2D1RenderTarget *pr);

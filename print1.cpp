@@ -1,8 +1,3 @@
-/* 2018 leresidue
-	© 2018 Frédérique Brisson-Lambert
-	20180123
-*/
-
 /***************************************************************************************
 
 	Copyright (c) 2018 Frédérique Brisson-Lambert

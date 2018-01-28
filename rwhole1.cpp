@@ -1,7 +1,3 @@
-/* 2018 leresidue
-	© 2018 Frédérique Brisson-Lambert
-*/
-
 /***************************************************************************************
 
 	Copyright (c) 2018 Frédérique Brisson-Lambert
@@ -53,6 +49,23 @@ ESbitmap::~ESbitmap() {
 
 IWICBitmap *ESbitmap::gb() {
 	return bmp;
+}
+
+int ESbitmap::getpointer(BYTE **psrc, UINT *psize, UINT *pstride) {
+	InitTile();
+	if(psrc && psize && pstride) {
+		if(tileinited && lock && src && size && stride) {
+			*psrc = src;
+			*psize = size;
+			*pstride = stride;
+			return 0;
+		}
+	}
+	return 1;
+}
+
+int ESbitmap::releasepointer(BYTE **psrc, UINT *psize, UINT *pstride) {
+	return 0;
 }
 
 void ESbitmap::InitTile() {

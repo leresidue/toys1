@@ -1,7 +1,3 @@
-/* 2018 leresidue
-	© 2018 Frédérique Brisson-Lambert
-*/
-
 /***************************************************************************************
 
 	Copyright (c) 2018 Frédérique Brisson-Lambert
@@ -49,6 +45,9 @@ public:
 	~ESbitmap();
 
 	IWICBitmap *gb();
+
+	int getpointer(BYTE **psrc, UINT *psize, UINT *pstride);
+	int releasepointer(BYTE **psrc, UINT *psize, UINT *pstride);
 
 	void CopyTile(EACBbitmap *pdst, int scaling, POINT pfromwhere, uint32_t *cache, int item);
 	void StopTile();
