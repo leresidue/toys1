@@ -78,7 +78,16 @@ Dtext::~Dtext() {
 
 LRESULT Dwindow::wp(UINT msg, WPARAM wParam, LPARAM lParam) {
 	HRESULT	hr;
+	int	pX, pY;
 	switch(msg) {
+	case WM_CHAR:
+		this->keyboardDispatch(gw(), msg, wParam, lParam);
+		InvalidateRect(gw(), nullptr, false);
+		return 0;
+	case WM_LBUTTONDOWN: case WM_LBUTTONUP: case WM_MOUSEMOVE:
+		this->mouseDispatch(gw(), msg, wParam, lParam);
+		InvalidateRect(gw(), nullptr, false);
+		return 0;
 	case WM_PAINT: {
 		PAINTSTRUCT ps;
 		HDC hdc = BeginPaint(gw(), &ps);
@@ -187,7 +196,7 @@ ID2D1SolidColorBrush *Dcontext::getbrush(short r, short g, short b, short a) {
 void Dwindow::finish() {
 	create_rendertarget();
 }
-Dwindow::Dwindow()
+Dwindow::Dwindow():Emouse()
 {
 
 }

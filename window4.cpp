@@ -23,53 +23,71 @@
 ***************************************************************************************/
 
 
-#pragma once
+#include "stdafx.h"
 
-class Dtext {
-public:
-	typedef uint64_t Dtexti;
-protected:
-	uint64_t	gmin = 1;
-	std::unordered_map< Dtexti, IDWriteTextFormat*>	dwtf;
-public:
+void Ekeyboard::keyboardDispatch(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam) {
+	switch(msg) {
+	case WM_CHAR:
+		this->keyDown(wparam);
+		break;
+	}
+}
+
+Ekeyboard::Ekeyboard() {
+
+}
+
+Ekeyboard::~Ekeyboard() {
+
+}
+
+void Ekeyboard::keyDown(wchar_t pk) {
+
+}
+
+void Emouse::mouseDispatch(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam) {
+	POINT	pt;
+	pt.x = GET_X_LPARAM(lparam);
+	pt.y = GET_Y_LPARAM(lparam);
+	lwp = wparam;
+	switch(msg) {
+	case WM_LBUTTONDOWN:
+		fpt = lpt = pt;
+		SetCapture(wnd);
+		SetFocus(wnd);
+		this->mouseOn(pt.x, pt.y);
+		left = true;
+		break;
+	case WM_LBUTTONUP:
+		lpt = pt;
+		this->mouseUp(pt.x, pt.y);
+		ReleaseCapture();
+		left = false;
+		break;
+	case WM_MOUSEMOVE:
+		lpt = pt;
+		if(left)
+			this->mouseMv(pt.x, pt.y);
+		break;
+	}
+}
+
+Emouse::Emouse() {
+
+}
+
+Emouse::~Emouse() {
+
+}
+
+void Emouse::mouseOn(float px, float py) {
+
+}
+
+void Emouse::mouseUp(float px, float py) {
 	
-	
+}
 
-	IDWriteTextFormat *gettf(Dtexti i);
-	Dtexti createformat(const wchar_t *fn, float size, bool italic, bool bold);
+void Emouse::mouseMv(float px, float py) {
 
-	Dtext();
-	~Dtext();
-};
-
-class Dcontext {
-protected:
-	ID2D1RenderTarget	*rT = nullptr;
-	
-	std::unordered_map< uint64_t, ID2D1SolidColorBrush*>	bli;
-	ID2D1SolidColorBrush *getbrush(short r, short g, short b, short a = 255);
-
-	virtual void paint();
-	virtual void paint(D2D1_SIZE_F dim);
-public:
-	Dcontext();
-	Dcontext(ID2D1RenderTarget *pr);
-	~Dcontext();
-};
-class Emouse;
-
-class Dwindow : public Cwindow, public xScroll, public virtual Dcontext, 
-				public virtual Ekeyboard, public virtual Emouse {
-private:
-	void destroy_rT();
-	ID2D1DCRenderTarget	*drt = nullptr;
-protected:
-	LRESULT wp(UINT msg, WPARAM wParam, LPARAM lParam);
-	
-	void create_rendertarget();
-public:
-	void finish();
-	Dwindow();
-	~Dwindow();
-
-};
+}

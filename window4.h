@@ -22,54 +22,31 @@
 
 ***************************************************************************************/
 
-
 #pragma once
 
-class Dtext {
+class Ekeyboard {
 public:
-	typedef uint64_t Dtexti;
-protected:
-	uint64_t	gmin = 1;
-	std::unordered_map< Dtexti, IDWriteTextFormat*>	dwtf;
-public:
-	
-	
+	virtual void keyboardDispatch(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam);
 
-	IDWriteTextFormat *gettf(Dtexti i);
-	Dtexti createformat(const wchar_t *fn, float size, bool italic, bool bold);
+	Ekeyboard();
+	~Ekeyboard();
 
-	Dtext();
-	~Dtext();
+	virtual void keyDown(wchar_t pk);
 };
 
-class Dcontext {
-protected:
-	ID2D1RenderTarget	*rT = nullptr;
-	
-	std::unordered_map< uint64_t, ID2D1SolidColorBrush*>	bli;
-	ID2D1SolidColorBrush *getbrush(short r, short g, short b, short a = 255);
-
-	virtual void paint();
-	virtual void paint(D2D1_SIZE_F dim);
+class Emouse {
 public:
-	Dcontext();
-	Dcontext(ID2D1RenderTarget *pr);
-	~Dcontext();
-};
-class Emouse;
+	bool	left = false;
+	POINT	fpt, lpt;
+	WPARAM	lwp;
 
-class Dwindow : public Cwindow, public xScroll, public virtual Dcontext, 
-				public virtual Ekeyboard, public virtual Emouse {
-private:
-	void destroy_rT();
-	ID2D1DCRenderTarget	*drt = nullptr;
-protected:
-	LRESULT wp(UINT msg, WPARAM wParam, LPARAM lParam);
-	
-	void create_rendertarget();
-public:
-	void finish();
-	Dwindow();
-	~Dwindow();
+	virtual void mouseDispatch(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam);
 
+	Emouse();
+	~Emouse();
+
+	virtual void mouseOn(float px, float py);
+	virtual void mouseUp(float px, float py);
+	virtual void mouseMv(float px, float py);
 };
+
